@@ -1,0 +1,20 @@
+CREATE table if not EXISTS genres (
+id_genre SERIAL primary key,
+genre_name VARCHAR(20) not null);
+
+CREATE table if not EXISTS singers (
+id_singer SERIAL primary key,
+singer_name VARCHAR(40) not null,
+genre_id INTEGER references genres(id_genre));
+
+CREATE table if not EXISTS albums (
+id_album SERIAL primary key,
+singer_id INTEGER references singers(id_singer),
+album_name VARCHAR(40) not null,
+release_year VARCHAR(4));
+
+CREATE table if not EXISTS tracks (
+id_track SERIAL primary key,
+album_id INTEGER references albums(id_album),
+track_name VARCHAR(40) not null,
+track_time DATE);
